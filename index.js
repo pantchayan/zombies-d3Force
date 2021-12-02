@@ -58,22 +58,6 @@ let ticked = () => {
       console.log("ZOMBIES GOT U");
       return;
     }
-    //   d3.select("#cursor-circle").remove();
-    //   d3.select("#circle0").transition().attr("cx", x).attr("cy", y);
-    // simulation
-    //   .force("x", function(d) {
-    //     let f = 1 / (1 + Math.abs(x - d.x));
-    //     let finalForce = f * or + os;
-    //     console.log(x, y, this.style('x'), finalForce)
-    //     return d3.forceX(x).strength(finalForce);
-    //   })
-    //   .force("y", d => d3.forceY(y).strength((1 / (1 + Math.abs(y - d.y))) * or + os));
-    //   // .force("y", (d) => {
-    //   //   let f = 1 / (1 + Math.abs(my - d.y));
-    //   //   let finalForce = f * or + os;
-
-    //   //   return d3.forceY(my).strength(finalForce);
-    //   // });
   });
 
   d3.select("svg")
@@ -98,19 +82,11 @@ let simulation = d3
   .forceSimulation(nodes)
   .alphaTarget(0.3)
   .velocityDecay(0.66)
-  // .force("center", d3.forceCenter(dimensions.width / 2, dimensions.height / 2))
   .force("charge", d3.forceManyBody(nodes).strength(-30))
   .force(
     "collide",
     d3.forceCollide().radius((d) => d.radius + 5)
   )
-  //   .force("x", function(d) {
-  //     let f = 1 / (1 + Math.abs(x - d.x));
-  //     let finalForce = f * or + os;
-  //     console.log(x, y, this.style('x'), finalForce)
-  //     return d3.forceX(x).strength(finalForce);
-  //   })
-  //   .force('y', d3.forceY().strength(0.1))
   .on("tick", ticked);
 
 window.addEventListener("resize", () => {
